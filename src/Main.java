@@ -23,9 +23,15 @@ public class Main {
             int[][] A = new int[rows][cols];
             int[][] B = new int[rows][cols];
 
-            // Заповнюю матриці A і B випадковими значеннями
+            // Заповнення матриці A і B випадковими значеннями
             initializeMatrix(A);
             initializeMatrix(B);
+
+            // Вивід матриць А і В
+            System.out.println("Матриця A:");
+            printMatrix(A);
+            System.out.println("\nМатриця В:");
+            printMatrix(B);
 
             // Додавання матриць A і B та отримуємо матрицю C
             int[][] C = new int[rows][cols];
@@ -36,7 +42,7 @@ public class Main {
             }
 
             // Результат операції додавання
-            System.out.println("Результат додавання матриць A і B:");
+            System.out.println("\nРезультат додавання матриць A і B:");
             printMatrix(C);
 
             // Сума найбільших та найменших елементів в стовпцях матриці C
@@ -44,19 +50,17 @@ public class Main {
             int sumMinEl = sumMinElementsInOddColumns(C);
 
             // Результати обчислень
-            System.out.println("Сума найбільших елементів в стовпцях з парними номерами: " + sumMaxEl);
+            System.out.println("\nСума найбільших елементів в стовпцях з парними номерами: " + sumMaxEl);
             System.out.println("Сума найменших елементів в стовпцях з непарними номерами: " + sumMinEl);
         } catch (Exception e) {
             System.err.println("Помилка: " + e.getMessage());
         }
-
-
     }
     // Метод для ініціалізації матриці випадковими значеннями
     public static void initializeMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
-                matrix[i][j] = (int) (Math.random() * 100); // Генеруємо випадкове ціле число від 0 до 99
+                matrix[i][j] = (int) (Math.random() * 100); // Випадкове ціле число від 0 до 99
             }
         }
     }
@@ -65,9 +69,10 @@ public class Main {
     public static int sumMaxElementsInEvenColumns(int[][] matrix) {
         int sum = 0;
         int cols = matrix[0].length;
+        int rows = matrix.length;
         for (int j = 0; j < cols; j += 2) {
             int max = matrix[0][j];
-            for (int i = 1; i < matrix.length; i++) {
+            for (int i = 1; i < rows; i++) {
                 if (matrix[i][j] > max) {
                     max = matrix[i][j];
                 }
@@ -81,9 +86,10 @@ public class Main {
     public static int sumMinElementsInOddColumns(int[][] matrix) {
         int sum = 0;
         int cols = matrix[0].length;
+        int rows = matrix.length;
         for (int j = 1; j < cols; j += 2) {
             int min = matrix[0][j];
-            for (int i = 1; i < matrix.length; i++) {
+            for (int i = 1; i < rows; i++) {
                 if (matrix[i][j] < min) {
                     min = matrix[i][j];
                 }
